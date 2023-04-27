@@ -1,0 +1,10 @@
+name: Issue Creation trigger
+on:
+  issues:
+    types: [opened, edited]
+jobs:
+  get-event-details:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Output event details"
+        run: echo "${{toJSON(github.event)}}"
