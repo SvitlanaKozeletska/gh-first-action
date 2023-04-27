@@ -8,4 +8,4 @@ jobs:
     steps:
       - name: Print greeting
       - name: Print goodbye
-        run: echo "Done! Bye!"
+        run: echo "${{toJSON(github.event)}}"
