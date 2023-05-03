@@ -2,8 +2,8 @@ name: Issue Creation trigger
 on: issues
 jobs:
   get-event-details:
+    if: contains(github.event.issue.assignee.*.login, 'SvitlanaKozeletska')
     runs-on: ubuntu-latest
     steps:
       - name: "Output event details"
-        if: contains(github.event.issue.assignee.*.login, 'SvitlanaKozeletska')
         run: echo "${{toJSON(github.event)}}"
