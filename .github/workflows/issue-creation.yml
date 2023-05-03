@@ -6,4 +6,6 @@ jobs:
     steps:
       - name: "Output event details"
         if: contains('SvitlanaKozeletska', github.event.issue.assignee.login)
-        run: echo "{Success}"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
