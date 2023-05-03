@@ -5,5 +5,13 @@ jobs:
     if: ${{ !contains(github.event.issue.labels.*.name, 'JIRA sync') && github.event.issue.assignee && contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login) }}
     runs-on: ubuntu-latest
     steps:
-      - name: "Output event details"
+      - name: 'Get repo code'
+        uses: actions/checkout@v3
+      - name: 'Output event details'
         run: echo "${{toJSON(github.event.issue.assignee.login)}}"
+  information:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run custom action
+        uses: ./.github/actions/create-jira-ticket
+
