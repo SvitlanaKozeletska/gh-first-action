@@ -5,4 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Output event details"
+        if: contains('SvitlanaKozeletska', github.event.issue.assignee.login)
         run: echo "${{toJSON(github.event)}}"
