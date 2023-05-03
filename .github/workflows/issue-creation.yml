@@ -2,7 +2,7 @@ name: Issue Creation trigger
 on: issues
 jobs:
   get-event-details:
-    if: contains(github.event.issue.assignee.*.login, 'SvitlanaKozeletska')
+    if: ${{ github.event.issue.assignee }} && contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login)
     runs-on: ubuntu-latest
     steps:
       - name: "Output event details"
