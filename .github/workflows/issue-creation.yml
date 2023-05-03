@@ -3,6 +3,7 @@ on: issues
 jobs:
   get-event-details:
     runs-on: ubuntu-latest
+    if: contains('SvitlanaKozeletska', github.event.issue.assignee.login)
     steps:
       - name: "Output event details"
-        run: echo "${{toJSON(github.event)}}"
+        run: echo "Success"
