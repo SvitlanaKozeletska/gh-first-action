@@ -4,7 +4,7 @@ const github = require('@actions/github');
 function run () {
 
   const issue = core.getInput('issue', {required: true});
-  core.notice('Hello from my custom JS action' + issue);
+  core.notice('Hello from my custom JS action' + JSON.stringify(issue));
 }
 
 run();
