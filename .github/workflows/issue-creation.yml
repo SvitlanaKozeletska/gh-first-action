@@ -15,7 +15,11 @@ jobs:
       - name: 'Get repo code'
         uses: actions/checkout@v3
       - name: Run custom action
+        id: ticket
         uses: ./.github/actions/create-jira-ticket
         with:
           issue: ${{ toJSON(github.event.issue) }}
+      - name: Output ticket creation response
+        run: |
+          echo "Response: ${{ steps.ticket.outputs.http-response }}"
 

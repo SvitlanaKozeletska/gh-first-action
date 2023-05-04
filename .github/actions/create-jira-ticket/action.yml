@@ -7,6 +7,11 @@ inputs:
       Issue to be created in JIRA
     required: true
 
+outputs:
+  http-response:
+    description: >
+      HTTP response for POST request on JIRA ticket creation
+
 runs:
   using: 'node16'
   main: 'main.js'
