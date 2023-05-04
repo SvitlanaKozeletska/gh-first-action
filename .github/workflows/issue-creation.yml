@@ -17,5 +17,5 @@ jobs:
       - name: Run custom action
         uses: ./.github/actions/create-jira-ticket
         with:
-          issue: github.event.issue
+          issue: ${{ toJSON(github.event.issue) }}
 
