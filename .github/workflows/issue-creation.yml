@@ -19,6 +19,7 @@ jobs:
         uses: SvitlanaKozeletska/jira-ticket-action@v1.4
         with:
           issue: ${{ toJSON(github.event.issue) }}
+          JIRA_TOKEN: ${{ secrets.JIRADEV_AUTHORIZATION_TOKEN }}
       - name: Output ticket creation response
         run: |
           echo "Response: ${{ toJSON(steps.ticket.outputs.http-response) }}"
