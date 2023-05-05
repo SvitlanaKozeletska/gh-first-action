@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Run custom action
         id: ticket
-        uses: SvitlanaKozeletska/jira-ticket-action@v1.5
+        uses: SvitlanaKozeletska/jira-ticket-action@v1.6
         with:
           issue: ${{ toJSON(github.event.issue) }}
           JIRA_TOKEN: ${{ secrets.JIRADEV_AUTHORIZATION_TOKEN }}
