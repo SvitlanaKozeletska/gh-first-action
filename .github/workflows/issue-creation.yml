@@ -20,7 +20,7 @@ jobs:
         with:
           issue: ${{ toJSON(github.event.issue) }}
           JIRA_TOKEN: ${{ secrets.JIRADEV_AUTHORIZATION_TOKEN }}
-          ISSUE_TYPE: 'Task'
+          ISSUE_TYPE: 'Task b'
       - name: Output ticket creation response
         run: |
           echo "Response: ${{ toJSON(steps.ticket.outputs.http-response) }}"
