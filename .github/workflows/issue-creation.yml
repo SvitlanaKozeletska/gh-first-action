@@ -25,6 +25,7 @@ jobs:
 #        run: |
 #          echo "Response: ${{ toJSON(steps.ticket.outputs.http-response) }}"
   report: # to be run only in case JIRA ticket job failed
+    needs: [get-event-details, information]
     if: failure()
     runs-on: ubuntu-latest
     steps:
