@@ -14,14 +14,19 @@ jobs:
     steps:
       - name: 'Get repo code'
         uses: actions/checkout@v3
-      - name: Run custom action
+      - name: 'Create JIRA ticket'
         id: ticket
         uses: SvitlanaKozeletska/jira-ticket-action@v1.1
         with:
           issue: ${{ toJSON(github.event.issue) }}
           JIRA_TOKEN: ${{ secrets.JIRADEV_AUTHORIZATION_TOKEN }}
           ISSUE_TYPE: 'Task b'
-      - name: Output ticket creation response
-        run: |
-          echo "Response: ${{ toJSON(steps.ticket.outputs.http-response) }}"
-
+#      - name: Output ticket creation response
+#        run: |
+#          echo "Response: ${{ toJSON(steps.ticket.outputs.http-response) }}"
+  report: # to be run only in case JIRA ticket job failed
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: echo "Something went wrong on JIRA ticket creat"
