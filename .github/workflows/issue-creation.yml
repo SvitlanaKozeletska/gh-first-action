@@ -2,20 +2,24 @@ name: Issue Creation trigger
 on: issues
 jobs:
   get-event-details:
-    concurrency:
-      group:
-        ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
-    if: |
-      github.event.issue.assignee != null &&
-      (contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login)) &&
-      (!contains(github.event.issue.labels.*.name, 'JIRA sync'))
     runs-on: ubuntu-latest
     steps:
-      - name: 'Get repo code'
-        uses: actions/checkout@v3
-      - name: 'Output event details'
-        uses: SvitlanaKozeletska/jira-ticket-action@main
+      - name: Output information
+        run: echo "${{ toJSON(github) }}"
+    # concurrency:
+    #   group:
+    #     ${{ github.workflow }}-${{ github.ref }}
+    #   cancel-in-progress: true
+    # if: |
+    #   github.event.issue.assignee != null &&
+    #   (contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login)) &&
+    #   (!contains(github.event.issue.labels.*.name, 'JIRA sync'))
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - name: 'Get repo code'
+    #     uses: actions/checkout@v3
+    #   - name: 'Output event details'
+    #     uses: SvitlanaKozeletska/jira-ticket-action@main
   # information:
   #   runs-on: ubuntu-latest
   #   steps:
