@@ -9,15 +9,12 @@ jobs:
       # - name: Output information
         # run: echo "${{ toJSON(github) }}"
     env:
-      GITHUB_ISSUE_ASSIGNEES: ${{toJSON('["SvitlanaKozeletska", "secondname"]')}}
+      GITHUB_ISSUE_ASSIGNEES: ("SvitlanaKozeletska", "secondname")
     concurrency:
       group:
         ${{ github.event.issue.number }}
       cancel-in-progress: true
-    if: |
-      github.event.issue.assignee != null &&
-      (contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login)) &&
-      (!contains(github.event.issue.labels.*.name, 'JIRA sync'))
+    if: ${{ github.event.issue.assignee != null && contains(env.GITHUB_ISSUE_ASSIGNEES, github.event.issue.assignee.login) && !contains(github.event.issue.labels.*.name, 'JIRA sync')}}
     runs-on: ubuntu-latest
     steps:
       - name: 'Get repo code'
