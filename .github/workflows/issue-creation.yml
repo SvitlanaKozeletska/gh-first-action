@@ -22,7 +22,7 @@ jobs:
       cancel-in-progress: true
     if: |
       github.event.issue.assignee != null &&
-      (contains(fromJSON(needs.build.outputs.env), github.event.issue.assignee.login)) &&
+      (contains(needs.build.outputs.env, github.event.issue.assignee.login)) &&
       (!contains(github.event.issue.labels.*.name, 'JIRA sync'))
     runs-on: ubuntu-latest
     steps:
