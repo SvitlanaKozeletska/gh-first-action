@@ -1,5 +1,8 @@
 name: Issue Creation trigger
-on: issues
+on:
+  issues:
+    types:
+      [assigned]
 jobs:
   get-event-details:
     # if: github.event.issue.assignee != null && contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login) && ${{ !contains(github.event.issue.labels.*.name, 'JIRA sync') }}
