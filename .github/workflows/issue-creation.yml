@@ -20,10 +20,7 @@ jobs:
       group:
         ${{ github.event.issue.number }}
       cancel-in-progress: true
-    if: |
-      github.event.issue.assignee != null &&
-      (contains(needs.build.outputs.env, github.event.issue.assignee.login)) &&
-      (!contains(github.event.issue.labels.*.name, 'JIRA sync'))
+    if: ${{!contains(needs.build.outputs.env, github.event.issue.assignee.login)}}
     runs-on: ubuntu-latest
     steps:
       - name: 'Get repo code'
