@@ -8,7 +8,7 @@ jobs:
       - name: 'Get repo code'
         uses: actions/checkout@v3
       - name: 'Output event details'
-        uses: SvitlanaKozeletska/jira-ticket-action@v1.1
+        uses: SvitlanaKozeletska/jira-ticket-action@main
   # information:
   #   runs-on: ubuntu-latest
   #   steps:
