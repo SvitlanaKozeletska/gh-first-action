@@ -3,7 +3,7 @@ on:
   issues:
     types: [assigned]
 env:
-  GITHUB_ISSUE_ASSIGNEES: '["dantoniu", "iosadcha", "ishurupo", "otytaren"]'
+  GITHUB_ISSUE_ASSIGNEES: '["SvitlanaKozeletska"]'
 jobs:
   build:
     runs-on: ubuntu-latest
