@@ -2,30 +2,30 @@ name: Issue Creation trigger
 on: issues
 jobs:
   get-event-details:
-    if: ${{ !contains(github.event.issue.labels.*.name, 'JIRA sync') && github.event.issue.assignee && contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login) }}
+    if: github.event.issue.assignee != null && contains(fromJSON('["dantoniu", "iosadcha", "ishurupo", "otytaren"]'), github.event.issue.assignee.login) && ${{ !contains(github.event.issue.labels.*.name, 'JIRA sync') }}
     runs-on: ubuntu-latest
     steps:
       - name: 'Get repo code'
         uses: actions/checkout@v3
       - name: 'Output event details'
         run: echo "${{toJSON(github.event.issue.assignee.login)}}"
-  information:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Get repo code'
-        uses: actions/checkout@v3
-      - name: 'Create JIRA ticket'
-        id: ticket
-        uses: SvitlanaKozeletska/jira-ticket-action@v1.1
-        with:
-          issue: ${{ toJSON(github.event.issue) }}
-          JIRA_TOKEN: ${{ secrets.JIRADEV_AUTHORIZATION_TOKEN }}
-          ISSUE_TYPE: 'Task b'
+  # information:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 'Get repo code'
+  #       uses: actions/checkout@v3
+  #     - name: 'Create JIRA ticket'
+  #       id: ticket
+  #       uses: SvitlanaKozeletska/jira-ticket-action@v1.1
+  #       with:
+  #         issue: ${{ toJSON(github.event.issue) }}
+  #         JIRA_TOKEN: ${{ secrets.JIRADEV_AUTHORIZATION_TOKEN }}
+  #         ISSUE_TYPE: 'Task b'
 #      - name: Output ticket creation response
 #        run: |
 #          echo "Response: ${{ toJSON(steps.ticket.outputs.http-response) }}"
   report: # to be run only in case JIRA ticket job failed
-    needs: [get-event-details, information]
+    needs: [get-event-details]
     if: failure()
     runs-on: ubuntu-latest
     steps:
