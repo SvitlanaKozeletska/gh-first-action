@@ -2,6 +2,10 @@ name: Issue Creation trigger
 on: issues
 jobs:
   get-event-details:
+    concurrency:
+      group:
+        ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
     if: |
       github.event.issue.assignee != null &&
       (contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login)) &&
