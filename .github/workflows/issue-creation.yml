@@ -2,7 +2,7 @@ name: Issue Creation trigger
 on: issues
 jobs:
   get-event-details:
-    if: github.event.issue.assignee != null && contains(fromJSON('["dantoniu", "iosadcha", "ishurupo", "otytaren"]'), github.event.issue.assignee.login) && ${{ !contains(github.event.issue.labels.*.name, 'JIRA sync') }}
+    if: github.event.issue.assignee != null && contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login) && ${{ !contains(github.event.issue.labels.*.name, 'JIRA sync') }}
     runs-on: ubuntu-latest
     steps:
       - name: 'Get repo code'
