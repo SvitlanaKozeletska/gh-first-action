@@ -1,5 +1,7 @@
 name: Issue Creation trigger
-on: issues
+on:
+  issues:
+    types: [assigned]
 jobs:
   get-event-details:
     # runs-on: ubuntu-latest
