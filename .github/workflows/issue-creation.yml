@@ -1,8 +1,5 @@
 name: Issue Creation trigger
-on:
-  issues:
-    types:
-      [assigned]
+on: issues
 jobs:
   get-event-details:
     if: |
