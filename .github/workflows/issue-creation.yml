@@ -5,17 +5,7 @@ on:
 env:
   GITHUB_ISSUE_ASSIGNEES: ("SvitlanaKozeletska", "secondname")
 jobs:
-  set-variable:
-    runs-on: ubuntu-latest
-    outputs:
-      myVar: ${{ steps.init.outputs.myVar }}
-    steps:        
-      - name: Environment variables to output 
-        id: init
-        run: |
-          echo "myVar=${{ env.GITHUB_ISSUE_ASSIGNEES }}" >> $GITHUB_OUTPUT
   get-event-details:
-    needs: set-variable
     # runs-on: ubuntu-latest
     # steps:
       # - name: Output information
@@ -27,7 +17,7 @@ jobs:
       cancel-in-progress: true
     if: |
       github.event.issue.assignee != null &&
-      (contains(fromJSON(needs.set-variable.outputs.myVar), github.event.issue.assignee.login)) &&
+      (contains(fromJSON('["SvitlanaKozeletska"]'), github.event.issue.assignee.login)) &&
       (!contains(github.event.issue.labels.*.name, 'JIRA sync'))
     runs-on: ubuntu-latest
     steps:
