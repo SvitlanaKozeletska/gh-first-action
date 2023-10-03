@@ -3,7 +3,7 @@ on:
   issues:
     types: [assigned]
 env:
-  GITHUB_ISSUE_ASSIGNEES: ("SvitlanaKozeletska", "secondname")
+  GITHUB_ISSUE_ASSIGNEES: '["dantoniu", "iosadcha", "ishurupo", "otytaren"]'
 jobs:
   get-event-details:
     # runs-on: ubuntu-latest
