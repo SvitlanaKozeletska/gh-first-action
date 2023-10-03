@@ -2,14 +2,15 @@ name: Issue Creation trigger
 on:
   issues:
     types: [assigned]
+env:
+  GITHUB_ISSUE_ASSIGNEES: ("SvitlanaKozeletska", "secondname")
 jobs:
   get-event-details:
     # runs-on: ubuntu-latest
     # steps:
       # - name: Output information
         # run: echo "${{ toJSON(github) }}"
-    env:
-      GITHUB_ISSUE_ASSIGNEES: ("SvitlanaKozeletska", "secondname")
+  
     concurrency:
       group:
         ${{ github.event.issue.number }}
