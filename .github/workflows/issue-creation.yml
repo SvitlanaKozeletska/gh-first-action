@@ -9,7 +9,7 @@ jobs:
       # - name: Output information
         # run: echo "${{ toJSON(github) }}"
     env:
-      GITHUB_ISSUE_ASSIGNEES: ${{toJSON("['SvitlanaKozeletska', 'secondname']")}}
+      GITHUB_ISSUE_ASSIGNEES: ${{toJSON('["SvitlanaKozeletska", "secondname"]')}}
     concurrency:
       group:
         ${{ github.event.issue.number }}
