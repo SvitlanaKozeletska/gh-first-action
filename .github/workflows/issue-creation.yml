@@ -5,30 +5,18 @@ on:
 env:
   GITHUB_ISSUE_ASSIGNEES: '["SvitlanaKozeletska"]'
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    outputs:
-      issue-assignees: ${{ steps.init.outputs.env }}
-    steps:
-      - name: Make environment variables global
-        id: init
-        run: |
-          echo "env=${{ env.GITHUB_ISSUE_ASSIGNEES }}" >> $GITHUB_OUTPUT
   get-event-details:
-    needs: build
     concurrency:
       group:
         ${{ github.event.issue.number }}
       cancel-in-progress: true
-    if: ${{github.event.issue.assignee != null && !contains(needs.build.outputs.env, github.event.issue.assignee.login) && !contains(github.event.issue.labels.*.name, 'JIRA sync')}}
+    if: ${{github.event.issue.assignee != null && !contains('["SvitlanaKozeletska"]', github.event.issue.assignee.login) && !contains(github.event.issue.labels.*.name, 'JIRA sync')}}
     runs-on: ubuntu-latest
     steps:
       - name: 'Get repo code'
         uses: actions/checkout@v3
       - name: 'Output event details'
         uses: SvitlanaKozeletska/jira-ticket-action@main
-        with:
-          GITHUB_ISSUE_ASSIGNEES: ${{env.GITHUB_ISSUE_ASSIGNEES}}
   # information:
   #   runs-on: ubuntu-latest
   #   steps:
